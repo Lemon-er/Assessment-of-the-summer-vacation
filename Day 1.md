@@ -36,7 +36,7 @@
 
 对**ResNet**和**MobileNet**使用**注意力机制**：
 
-![image-20220629130544659](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220629130544659.png)
+![image-20220629130544659](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220629130544659.png)
 
 **ResNet**中的**SE注意力机制**放在了(1,1)卷积之后，激励部分使用的是**全连接层**。MobileNetV3中**SE注意力机制**放在了(1,1)卷积之前，并且激励部分使用的是**卷积层**。
 
