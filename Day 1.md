@@ -6,7 +6,7 @@
 
 在深层卷积神经网络中，梯度优化更困难，残差网络将输入值x经过权重层和激活函数得到的结果与原来的x的值相加，在经过一个激活函数得到输出结果，解决了难以训练的问题，提高训练速度。具体有两种方式：
 
-![image-20220629122704349](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220629122704349.png)
+![image-20220629122704349](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220629122704349.png)
 
 左图对应输入通道为64时，用两个(3,3)的卷积，中间不改变通道数，最后**相加激活**得到输出。右图对应于输入通道为256时，先用一个(1,1)的卷积把**通道数缩小为1/4**，然后在这个通道数上进行(3,3)的卷积，最后再经过一个(1,1)的卷积改为原通道，然后**相加激活**的到输出。
 
@@ -16,7 +16,7 @@
 
 在**轻量化的卷积网络**中应用广泛。它的结构如下图：
 
-![image-20220629123205219](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220629123205219.png)
+![image-20220629123205219](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220629123205219.png)
 
 对于一个输入矩阵，我先用一个(3,3)的卷积，各个通道**不相加**，这个过程其实就是**分组卷积**，**分组的个数等于输入通道数**，之后再用(1,1)的卷积改变**输出通道数**。
 
@@ -26,13 +26,13 @@
 
 **SE注意力机制**希望模型可以**自动学习到不同channel特征的重要程度**，因为很显然各个通道间**所包含特征的重要程度是不一样的**。它的结构如下：
 
-![image-20220629123820679](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220629123820679.png)
+![image-20220629123820679](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220629123820679.png)
 
 通过一个**全局平均池化**，将输入的大小压缩成1*1，通道数不变，对这个一维矩阵做激励，得到的这样的一个一维矩阵相当于是各个通道的权重，将这个一维矩阵与原输入相乘，得到一个重要成不同的输出，这样就区分出了各个通道的重要性。
 
 原始SE注意力机制的**压缩**和**激励**如下：
 
-![image-20220629124755627](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220629124755627.png)
+![image-20220629124755627](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220629124755627.png)
 
 对**ResNet**和**MobileNet**使用**注意力机制**：
 
