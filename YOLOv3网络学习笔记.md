@@ -10,7 +10,7 @@ v3是anchor based算法，预先在图片上生成很多先验框，然后通过
 
 分为三部分，分别为backbone（主体）,neck（脖子）和head（头部）。
 
-![image-20220702145221218](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220702145221218.png)
+![image-20220702145221218](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702145221218.png)
 
 ## backbone部分：
 
@@ -18,7 +18,7 @@ v3是anchor based算法，预先在图片上生成很多先验框，然后通过
 
 总体形式如下：
 
-![image-20220702150614059](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220702150614059.png)
+![image-20220702150614059](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702150614059.png)
 
 ​		先通过卷积层把输入通道数扩充到32，然后接着很多个Residual Block,中间穿插很多向下采样（Conv）。Residual Block包含两个卷积归一化层，第一个卷积归一化层就是通过1 * 1的卷积把输入通道数降到一半，然后经过归一化和激活函数；第二个卷积层主要用来提取特征，大小为3 *3，再将输出矩阵的通道数与输入通道数改为一致，然后经过归一化和激活函数后将输入与输出相加（残差结构）得到输出结果，此结果也是下一个卷积归一化的输入。可见DarkNet53借鉴了残差结构，残差结构用于深度比较深的网络可以防止梯度爆炸或梯度消失。
 
@@ -44,7 +44,7 @@ v3是anchor based算法，预先在图片上生成很多先验框，然后通过
 
 解释图:
 
-![image-20220702192347205](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220702192347205.png)
+![image-20220702192347205](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702192347205.png)
 
 获得到网络输出的三个矩阵后，并不是**直接获得了我们最后的预测框**。我们之前说过对于voc数据集，75=3×（20+4+1），其中20和1都是和分类相关的，对于这个4，也就是对先验框的4个调整的参数，通过调整后也就输出了最后的预测框。
 
@@ -54,7 +54,7 @@ anchors大小：[116,90],[156,198],[373,326],[30,61],[62,45],[59,119],[10,13],[1
 
 我们以13×13的输出为例，原本416×416大小变成13×13，相当于缩小了**32倍**，也就是说**原图32×32个小方块对应于最后输出的1×1的像素点**。anchors[116,90],[156,198],[373,326]相应地长宽都应该**除以32**，这就是**13×13每个点上的三个先验框**。
 
-![image-20220702195440234](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220702195440234.png)
+![image-20220702195440234](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702195440234.png)
 
 **粉红色**的就是对应到13×13上的**先验框**，它是我们一开始自己就确定的，显然是**不正确**，需要模型对它调整。
 
