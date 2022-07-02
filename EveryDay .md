@@ -81,3 +81,7 @@ Hardswish函数在梯度上存在突变，对于训练的精度不利，但是�
 从MobilenetV2到MobilenetV3的结构改动：V2使用了四层卷积再接一个平均池化；V3只用一个卷积层修改通道数直接接了平均池化层，大大减少网络参数量。
 整个的V3网络是一个残差网络结构，内嵌SE注意力机制，通过1* 1卷积改变通道数.
 ![image-20220702123331510](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702123331510.png)
+
+#Day 3
+
+系统复习YOLO v3网络结构并总结，为便于复习查阅，见单独文件
