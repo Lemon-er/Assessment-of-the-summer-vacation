@@ -73,11 +73,11 @@ MobilenetV3轻量级网络。
 2.SE注意力机制、
 
 3.新型的激活函数：Hardswish激活函数
-![](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220630183931997.png)
+![image-20220630183931997](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220630183931997.png)
 
 Hardswish函数在梯度上存在突变，对于训练的精度不利，但是在深层网络中影响较小，所以可以在浅层网络中可以用Relu函数代替。
 
 4.修改网络结构：缩减卷积层并没有减少太多精度
 从MobilenetV2到MobilenetV3的结构改动：V2使用了四层卷积再接一个平均池化；V3只用一个卷积层修改通道数直接接了平均池化层，大大减少网络参数量。
 整个的V3网络是一个残差网络结构，内嵌SE注意力机制，通过1* 1卷积改变通道数.
-![hhh]https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702123331510.png
+![image-20220702123331510]https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702123331510.png
