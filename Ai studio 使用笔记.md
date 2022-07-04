@@ -3,27 +3,25 @@ Ai studio 使用教程：
 
 Ai studio地址：[飞桨AI Studio - 人工智能学习实训社区 (baidu.com)](https://aistudio.baidu.com/aistudio/index)
 
-![image-20220704132941869](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704132941869.png)
+![image-20220704132941869](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704132941869.png)
 
 使用 Ai studio 的算力需要相应的算力卡，进行登陆注册后可领取”新手礼包“获得算力卡，而且每天使用Ai studio的GPU也会送8小时的算力卡。
 
 在Ai studio上运行项目首先要将数据集(包括项目的全套代码)打包上传：
 
-![image-20220704133449666](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704133449666.png)
+![image-20220704133449666](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704133449666.png)
 
-![image-20220704133512503](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704133512503.png)
+![image-20220704133711501](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704133512503.png)
 
-![image-20220704133711501](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704133711501.png
-
-![image-20220704133735350](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704133735350.png)
+![image-20220704133735350](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704133849996.png)
 
 下一步创建项目-->选择类型（Notebook）-->环境配置（Ai studio经典版）-->添加项目描述即可。
 
 创建好项目以后，点击启动环境即可
 
-![image-20220704134121977](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704134121977.png)
+![image-20220704134121977](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704134121977.png)
 
-![image-20220704135723008](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220704135723008.png)
+![image-20220704135723008](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220704135723008.png)
 
 根据需要选择相应的GPU大小即可，然后进入环境，首先将上传的数据集压缩包解压，数据集放在“data”文件夹下，找到压缩包点右边的三个小点复制解压命令，在终端中运行命令即可。
 
