@@ -132,3 +132,133 @@ AP是PR曲线下面的面积，一个越好的分类器，AP值越高。
 目前打算的改进方法：
 **对于YOLOv3的改进：通过引入可变形卷积，dropblock，IoU loss和Iou aware，将精度进一步提升；使用label smooth（标签平滑）提高模型的泛化性能和准确率；改变可以增加注意力机制；使用数据增强；将Darknet-53的比较深的网络（参数量非常庞大）改为轻量化网络；精简输出结果，减掉head中的一个输出，则对应也能减少一个Darknet-53的一个Output Feature,从而减少neck部分的运算；对先验框调整，原始是3个，可以改为2个或4个。**
 
+# Day 6
+YOLOv3的损失函数理解:
+
+``def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
+        # pbox
+        pbox = decode_yolo(pbox, anchor, downsample)
+        pbox = xywh2xyxy(pbox)
+        pbox = paddle.concat(pbox, axis=-1)
+        b = pbox.shape[0]
+        pbox = pbox.reshape((b, -1, 4))
+        # gbox
+        gxy = gbox[:, :, 0:2] - gbox[:, :, 2:4] * 0.5
+        gwh = gbox[:, :, 0:2] + gbox[:, :, 2:4] * 0.5
+        gbox = paddle.concat([gxy, gwh], axis=-1)
+
+        iou = iou_similarity(pbox, gbox)
+        iou.stop_gradient = True
+        iou_max = iou.max(2)  # [N, M1]
+        iou_mask = paddle.cast(iou_max <= self.ignore_thresh, dtype=pbox.dtype)
+        iou_mask.stop_gradient = True
+
+        pobj = pobj.reshape((b, -1))
+        tobj = tobj.reshape((b, -1))
+        obj_mask = paddle.cast(tobj > 0, dtype=pbox.dtype)
+        obj_mask.stop_gradient = True
+
+        loss_obj = F.binary_cross_entropy_with_logits(
+            pobj, obj_mask, reduction='none')
+        loss_obj_pos = (loss_obj * tobj)
+        loss_obj_neg = (loss_obj * (1 - obj_mask) * iou_mask)
+        return loss_obj_pos + loss_obj_neg
+
+    def cls_loss(self, pcls, tcls):
+        if self.label_smooth:
+            delta = min(1. / self.num_classes, 1. / 40)
+            pos, neg = 1 - delta, delta
+            # 1 for positive, 0 for negative
+            tcls = pos * paddle.cast(
+                tcls > 0., dtype=tcls.dtype) + neg * paddle.cast(
+                    tcls <= 0., dtype=tcls.dtype)
+
+        loss_cls = F.binary_cross_entropy_with_logits(
+            pcls, tcls, reduction='none')
+        return loss_cls
+
+    def yolov3_loss(self, p, t, gt_box, anchor, downsample, scale=1.,
+                    eps=1e-10):
+        na = len(anchor)
+        b, c, h, w = p.shape
+        if self.iou_aware_loss:
+            ioup, p = p[:, 0:na, :, :], p[:, na:, :, :]
+            ioup = ioup.unsqueeze(-1)
+        p = p.reshape((b, na, -1, h, w)).transpose((0, 1, 3, 4, 2))
+        x, y = p[:, :, :, :, 0:1], p[:, :, :, :, 1:2]
+        w, h = p[:, :, :, :, 2:3], p[:, :, :, :, 3:4]
+        obj, pcls = p[:, :, :, :, 4:5], p[:, :, :, :, 5:]
+        self.distill_pairs.append([x, y, w, h, obj, pcls])
+
+        t = t.transpose((0, 1, 3, 4, 2))
+        tx, ty = t[:, :, :, :, 0:1], t[:, :, :, :, 1:2]
+        tw, th = t[:, :, :, :, 2:3], t[:, :, :, :, 3:4]
+        tscale = t[:, :, :, :, 4:5]
+        tobj, tcls = t[:, :, :, :, 5:6], t[:, :, :, :, 6:]
+
+        tscale_obj = tscale * tobj
+        loss = dict()
+
+        x = scale * F.sigmoid(x) - 0.5 * (scale - 1.)
+        y = scale * F.sigmoid(y) - 0.5 * (scale - 1.)
+
+        if abs(scale - 1.) < eps:
+            loss_x = F.binary_cross_entropy(x, tx, reduction='none')
+            loss_y = F.binary_cross_entropy(y, ty, reduction='none')
+            loss_xy = tscale_obj * (loss_x + loss_y)
+        else:
+            loss_x = paddle.abs(x - tx)
+            loss_y = paddle.abs(y - ty)
+            loss_xy = tscale_obj * (loss_x + loss_y)
+
+        loss_xy = loss_xy.sum([1, 2, 3, 4]).mean()
+
+        loss_w = paddle.abs(w - tw)
+        loss_h = paddle.abs(h - th)
+        loss_wh = tscale_obj * (loss_w + loss_h)
+        loss_wh = loss_wh.sum([1, 2, 3, 4]).mean()
+
+        loss['loss_xy'] = loss_xy
+        loss['loss_wh'] = loss_wh
+
+        if self.iou_loss is not None:
+            # warn: do not modify x, y, w, h in place
+            box, tbox = [x, y, w, h], [tx, ty, tw, th]
+            pbox = bbox_transform(box, anchor, downsample)
+            gbox = bbox_transform(tbox, anchor, downsample)
+            loss_iou = self.iou_loss(pbox, gbox)
+            loss_iou = loss_iou * tscale_obj
+            loss_iou = loss_iou.sum([1, 2, 3, 4]).mean()
+            loss['loss_iou'] = loss_iou
+
+        if self.iou_aware_loss is not None:
+            box, tbox = [x, y, w, h], [tx, ty, tw, th]
+            pbox = bbox_transform(box, anchor, downsample)
+            gbox = bbox_transform(tbox, anchor, downsample)
+            loss_iou_aware = self.iou_aware_loss(ioup, pbox, gbox)
+            loss_iou_aware = loss_iou_aware * tobj
+            loss_iou_aware = loss_iou_aware.sum([1, 2, 3, 4]).mean()
+            loss['loss_iou_aware'] = loss_iou_aware
+
+        box = [x, y, w, h]
+        loss_obj = self.obj_loss(box, gt_box, obj, tobj, anchor, downsample)
+        loss_obj = loss_obj.sum(-1).mean()
+        loss['loss_obj'] = loss_obj
+        loss_cls = self.cls_loss(pcls, tcls) * tobj
+        loss_cls = loss_cls.sum([1, 2, 3, 4]).mean()
+        loss['loss_cls'] = loss_cls
+        return loss``
+
+
+
+（标签平滑）label smooth regularization作为一种简单的正则化技巧，它能提高分类任务中模型的泛化性能和准确率，缓解数据分布不平衡的问题。简单来说就是神经网络在交叉熵损失函数的时候，随着loss逐渐降低，使真样本为1，负样本为0，这样过于绝对，有了label smooth就会使前者趋于1，后者趋于0，能够提升模型效果。
+
+
+loss_obj(置信度损失):（没看明白......）过两天继续理解
+loss_cls(分类损失)：也用的是二值交熵，但是 “paddle.nn.functional.binary_cross_entropy_with_logits”结合了 sigmoid 操作和 api_nn_loss_BCELoss 操作。同时，我们也可以认为这个函数是 sigmoid_cross_entrop_with_logits和一些 reduce 操作的组合，所以这里不用对cls做一次sigmoid()操作和reduce操作。
+
+loss_x,loss_y（中心坐标）:用的是二值交叉熵损失， "paddle.nn.functional.binary_cross_entropy"函数用于计算输入 input和标签 label 之间的二值交叉熵损失值，输入通常为sigmoid的输出，所以loss_x，loss_y的输入x,y均经过了sigmoid激活函数；tscal是一个面积权重，真样本时tobj=1，负样本使为0，tscale_obj = tscale *tobj，这样就只对正样本计算了损失，负样本不会计算x损失，因为负样本的tobj处是0，0乘任何数都得0，也就是说负样本的x损失是0，而常数0的导数是0，也就是说负样本不会得到梯度。loss_xy就得到了预测的中心点坐标x,y求平均后的损失值；
+
+loss_w,loss_h（预测框的长宽）:用的是绝对损失，也就是L1损失，loss_wh同样也乘了tscale_obj,只计算真样本的损失，再求平均；
+
+iou损失，这一项是为了辅助监督预测框的坐标和大小，作为xywh损失的补充。它同样乘上了tscale_tobj，即只计算正样本的损失。iou损失，即我们希望预测框和gt之间的iou尽可能大，iou即交并比。计算iou损失时，就真的需要把上述的xywh解码成bx by bw bh再和gt框计算iou损失，求平均。iou_aware_loss更能提升精度；
