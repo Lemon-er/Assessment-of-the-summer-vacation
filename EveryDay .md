@@ -137,12 +137,14 @@ YOLOv3的损失函数理解:
 
 def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
         # pbox
+        
         pbox = decode_yolo(pbox, anchor, downsample)
         pbox = xywh2xyxy(pbox)
         pbox = paddle.concat(pbox, axis=-1)
         b = pbox.shape[0]
         pbox = pbox.reshape((b, -1, 4))
-        # gbox
+         gbox
+        
         gxy = gbox[:,_, 0:2] - gbox[:, :, 2:4] * 0.5
         gwh = gbox[:, :, 0:2] + gbox[:, :, 2:4] * 0.5
         gbox = paddle.concat([gxy, gwh], axis=-1)
