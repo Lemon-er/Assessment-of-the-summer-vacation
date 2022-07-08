@@ -143,9 +143,10 @@ def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
         b = pbox.shape[0]
         pbox = pbox.reshape((b, -1, 4))
         # gbox
-        gxy = gbox[:, :, 0:2] - gbox[:, :, 2:4] * 0.5
+        gxy = gbox[:,_, 0:2] - gbox[:, :, 2:4] * 0.5
         gwh = gbox[:, :, 0:2] + gbox[:, :, 2:4] * 0.5
         gbox = paddle.concat([gxy, gwh], axis=-1)
+
 
         iou = iou_similarity(pbox, gbox)
         iou.stop_gradient = True
