@@ -135,7 +135,7 @@ AP是PR曲线下面的面积，一个越好的分类器，AP值越高。
 # Day 6
 YOLOv3的损失函数理解:
 
-``def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
+def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
         # pbox
         pbox = decode_yolo(pbox, anchor, downsample)
         pbox = xywh2xyxy(pbox)
@@ -247,7 +247,7 @@ YOLOv3的损失函数理解:
         loss_cls = self.cls_loss(pcls, tcls) * tobj
         loss_cls = loss_cls.sum([1, 2, 3, 4]).mean()
         loss['loss_cls'] = loss_cls
-        return loss``
+        return loss
 
 
 
