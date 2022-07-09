@@ -282,11 +282,11 @@ ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练�
 | :--------- | --------------- | ---------- | ------------- | ------ |
 | Darkner_53 | 12              | 270e       | 38.39         | 68.41% |
 
-![loss (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss (1).png)
-![loss_obj (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss_cls.png)
-![loss_wh (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss_obj (1).png)
-![loss_xy (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss_wh (1).png)
-![loss_cls](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss_xy (1).png)
+![loss (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss (1).png)
+![loss_obj (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_cls.png)
+![loss_wh (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_obj (1).png)
+![loss_xy (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_wh (1).png)
+![loss_cls](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_xy (1).png)
 模型预测1：
 
 |         | 预测时间（ms） | 图片数量 |      |      |      |
@@ -298,6 +298,6 @@ ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练�
 
 street:
 
-![image-20220708203852435](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/street.png)
+![image-20220708203852435](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/street.png)
 street1:
-<img src="C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220705165411068.png" alt="image-20220705165411068"  />
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
