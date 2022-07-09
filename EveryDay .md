@@ -282,15 +282,15 @@ ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练�
 | :--------- | --------------- | ---------- | ------------- | ------ |
 | Darkner_53 | 12              | 270e       | 38.39         | 68.41% |
 
-![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss (1).png)
+![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss(1).png)
 
 ![loss_obj (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_cls.png)
 
-![loss_wh](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_obj (1).png)
+![loss_wh](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_obj(1).png)
 
-![loss_xy](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_wh (1).png)
+![loss_xy](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_wh(1).png)
 
-![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_xy (1).png)
+![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_xy(1).png)
 
 模型预测1：
 
