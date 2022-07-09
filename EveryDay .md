@@ -282,7 +282,7 @@ ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练�
 | :--------- | --------------- | ---------- | ------------- | ------ |
 | Darkner_53 | 12              | 270e       | 38.39         | 68.41% |
 
-![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss(1).png)
+![loss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/loss (1).png)
 
 ![loss_obj (1)](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_cls.png)
 
