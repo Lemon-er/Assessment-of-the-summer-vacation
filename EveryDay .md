@@ -263,3 +263,41 @@ loss_x,loss_y（中心坐标）:用的是二值交叉熵损失， "paddle.nn.fun
 loss_w,loss_h（预测框的长宽）:用的是绝对损失，也就是L1损失，loss_wh同样也乘了tscale_obj,只计算真样本的损失，再求平均；
 
 iou损失，这一项是为了辅助监督预测框的坐标和大小，作为xywh损失的补充。它同样乘上了tscale_tobj，即只计算正样本的损失。iou损失，即我们希望预测框和gt之间的iou尽可能大，iou即交并比。计算iou损失时，就真的需要把上述的xywh解码成bx by bw bh再和gt框计算iou损失，求平均。iou_aware_loss更能提升精度；
+
+# Day 7
+
+YOLO v3所有模型均在VOC2007数据集中训练和测试。
+
+ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练模型。
+
+**模型评估：**模型评估在一张32GTesla V100的GPU上通过'tools/eval.py'测试所有一部分验证集得到，单位是fps(图片数/秒), cuDNN版本是7.5，包括数据加载、网络前向执行和后处理, batch size是1。
+
+**推理时间(fps)**: 推理时间是在一张32GTesla V100的GPU上通过'tools/eval.py'测试所有验证集得到，单位是fps(图片数/秒), cuDNN版本是7.5，包括数据加载、网络前向执行和后处理, batch size是1。
+
+###### Baseline:
+
+模型评估：
+
+| 骨架网络   | 每张GPU图片个数 | 学习率策略 | 推理时间(fps) | mAP    |
+| :--------- | --------------- | ---------- | ------------- | ------ |
+| Darkner_53 | 12              | 270e       | 38.39         | 68.41% |
+
+![loss (1)](C:\Users\19127\Downloads\loss (1).png)
+![loss_obj (1)](C:\Users\19127\Downloads\loss_obj (1).png)
+![loss_wh (1)](C:\Users\19127\Downloads\loss_wh (1).png)
+![loss_xy (1)](C:\Users\19127\Downloads\loss_xy (1).png)
+![loss_cls](C:\Users\19127\Downloads\loss_cls.png)
+模型预测1：
+
+|         | 预测时间（ms） | 图片数量 |      |      |      |
+| ------- | -------------- | -------- | ---- | ---- | ---- |
+| street  | 1818.2         | 1        |      |      |      |
+| street1 | 2072.8         | 1        |      |      |      |
+|         |                |          |      |      |      |
+第一次预测：
+
+street:
+
+![image-20220708203852435](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220708203852435.png)
+street1:
+<img src="C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220705165411068.png" alt="image-20220705165411068"  />
