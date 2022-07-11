@@ -303,7 +303,7 @@ ImageNet预训练模型：Paddle提供的基于ImageNet的骨架网络预训练�
 
 street:
 
-![image-20220708203852435]
+![image-20220708203852435](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220705165333625.png)
 street1:
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220705165411068.png)
 
