@@ -325,5 +325,5 @@ street1:
 mAP:71.13%		FPS:39.1
 
 street:1810.8
-![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/tempsnip.png)
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip.png)
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
