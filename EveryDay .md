@@ -61,7 +61,10 @@
 
 
 
+
 # Day 2
+
+
 
 
 MobilenetV3轻量级网络。
@@ -82,15 +85,25 @@ Hardswish函数在梯度上存在突变，对于训练的精度不利，但是�
 整个的V3网络是一个残差网络结构，内嵌SE注意力机制，通过1* 1卷积改变通道数.
 ![image-20220702123331510](https://github.com/nongfulv2/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220702123331510.png)
 
+
 # Day 3
+
 
 系统复习YOLO v3网络结构并总结，为便于复习查阅，见单独文件
 
+
+
 # Day 4
+
+
 
 使用Ai studio 增加算力，创建新项目并总结笔记，为便于复习查阅，见单独文件
 
+
+
 # Day 5
+
+
 
 ## 评价指标
 
@@ -132,7 +145,11 @@ AP是PR曲线下面的面积，一个越好的分类器，AP值越高。
 目前打算的改进方法：
 **对于YOLOv3的改进：通过引入可变形卷积，dropblock，IoU loss和Iou aware，将精度进一步提升；使用label smooth（标签平滑）提高模型的泛化性能和准确率；改变可以增加注意力机制；使用数据增强；将Darknet-53的比较深的网络（参数量非常庞大）改为轻量化网络；精简输出结果，减掉head中的一个输出，则对应也能减少一个Darknet-53的一个Output Feature,从而减少neck部分的运算；对先验框调整，原始是3个，可以改为2个或4个。**
 
+
+
 # Day 6
+
+
 YOLOv3的损失函数理解:
 
 def obj_loss(self, pbox, gbox, pobj, tobj, anchor, downsample):
@@ -264,7 +281,11 @@ loss_w,loss_h（预测框的长宽）:用的是绝对损失，也就是L1损失�
 
 iou损失，这一项是为了辅助监督预测框的坐标和大小，作为xywh损失的补充。它同样乘上了tscale_tobj，即只计算正样本的损失。iou损失，即我们希望预测框和gt之间的iou尽可能大，iou即交并比。计算iou损失时，就真的需要把上述的xywh解码成bx by bw bh再和gt框计算iou损失，求平均。iou_aware_loss更能提升精度；
 
+
+
 # Day 7
+
+
 
 YOLO v3所有模型均在VOC2007数据集中训练和测试。
 
@@ -307,7 +328,11 @@ street:
 street1:
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220705165411068.png)
 
+
+
 # Day 8
+
+
 增加IOU-aware（论文阅读总结）：
 
 论文地址：[1912.05992.pdf (arxiv.org)](https://arxiv.org/pdf/1912.05992.pdf)
