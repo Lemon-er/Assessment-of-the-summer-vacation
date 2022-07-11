@@ -305,4 +305,8 @@ street:
 
 ![image-20220708203852435](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/street.png)
 street1:
+
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
+
+
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
