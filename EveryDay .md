@@ -305,8 +305,25 @@ street:
 
 ![image-20220708203852435](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/street.png)
 street1:
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220705165411068.png)
 
-![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
+# Day 8
+增加IOU-aware（论文阅读总结）：
 
+论文地址：[1912.05992.pdf (arxiv.org)](https://arxiv.org/pdf/1912.05992.pdf)
 
+论文名称：IoU-aware Single-stage Object Detector for Accurate Localization
+
+这篇文章提出了classification score和IoU之间不相关的问题，通过预测detected boxes和Ground Truth之间IoU，并在Inference阶段同时使用预测的IoU和classification score得到一个新的检测置信度，在新的检测置信度基础上进行NMS和AP的计算。
+
+作者指出目前single-stage检测器存在的问题：**classification score和localization accuracy之间的低相关性使得模型性能无法得到提升**，为了解决这个问题，提出了IoU-aware single-stage object detector。
+
+在这项工作中，**作者说明了single-stage object detection在Classification score和Localization Quality之间的低相关性会严重损害模型的性能(mAP)**。因此，作者提出的**IoU-aware single-stage object detector**是通过在regression分支的最后一层添加IoU Prediction head来预测每个detected box 的IoU。使得模型知道每个detected box的localization Quality。在推断过程中，通过**将分类分数和预测IoU相乘最为最终的检测置信度**，然后在随后的NMS和AP计算中使用该置信度对所有检测进行排序。
+
+所以，在源码Paddledetection_tutorial/ppdet/modeling/heads/yolo_head.py文件下修改iou_aware为True，在最后的输出上，增加了一个IoU Prediction Head，用于预测IoU。并在inference阶段使用Classification score乘上预测IoU作为最终置信度分数，更好地提升了精度。
+
+mAP:71.13%		FPS:39.1
+
+street:1810.8
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/tempsnip.png)
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/tempsnip1.png)
