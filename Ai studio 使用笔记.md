@@ -64,3 +64,16 @@ python deploy/python/infer.py --model_dir=./inference_model/yolov3_darknet53_270
 ### 安装包
 
 ```pip install pycocotools lap motmetrics```
+
+paddlepaddle 可视化：
+输出值：loss偏差逐渐降低，acc1的解释：经过模型训练后一般会输出由n个概率值组成的列表（n为标签的数量）例如本次训练有4个标签，可能输出的结果为[0.6 0.2 0.1 0.1],acc1就是该标签的第一个概率值对应的标签是实际的标签就认为是正确的，acc4就是n个概率值降序排列后，前面4个概率值对应的标签包含实际的标签就认为是正确的。
+
+model.train()中的"use_vdl=Ture"的设置可以在模型输出“output”文件夹生成“vdl_log”文件夹，作为模型训练的可视化工具。具体操作：
+
+在cmd命令行的output所在目录下执行激活“paddle_env”，然后输入命令行
+
+`visualdl --logdir output/mobilenetv3_small --port 8001`
+
+（“output/mobilenetv3_small”为“vdl_log”文件夹所在的两个上级目录）
+
+cmd输出有一个网址，复制到浏览器中打开就有训练时相关参数的变化过程。
