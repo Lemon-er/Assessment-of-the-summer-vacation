@@ -361,3 +361,14 @@ iou loss改为Ciou loss：
 论文名称：Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression
 
 论文阅读总结：DIoU Loss将两个框之间的距离作为损失函数的惩罚项，比GIoU Loss先增加预测框的大小使其与目标重叠收敛快得多，所以拥有比GIoU Loss更好的表现。CIOU在DIOU的基础上将Bounding box的纵横比考虑进损失函数中，进一步提升了回归精度。
+
+
+# Day 9
+
+iou loss改为Ciou loss：
+
+论文地址：[Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression (arxiv.org)](https://arxiv.org/pdf/1911.08287.pdf)
+
+论文名称：Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression
+
+论文阅读总结：DIoU Loss将两个框之间的距离作为损失函数的惩罚项，比GIoU Loss先增加预测框的大小使其与目标重叠收敛快得多，所以拥有比GIoU Loss更好的表现。CIOU在DIOU的基础上将Bounding box的纵横比考虑进损失函数中，进一步提升了回归精度。
