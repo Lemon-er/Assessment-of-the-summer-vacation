@@ -395,7 +395,7 @@ iou loss改为Ciou loss：
 对于BN，其归一化维度是N、HxW维度，故其可学习权重维度是(C,)，**其实就是BN的weight和bias维度**。BN本质意思就是在Batch和HxW维度进行归一化，可以看出和batch相关，如果batch比较小，那么可能统计就不准确。并且**由于测试时候batch可能和训练不同，导致分布不一致，故还多了两个参数：全局统计的均值和方差值**
 代码为：
 
-![image-20220711180949082](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220711180949082.png)
+![image-20220711180949082](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220711180949082.png)
 
 上述中C=100 其流程是：**对batch输入计算均值和方差(N、H和W维度求均值)，得到维度为(C,)，然后对输入(N,C,H,W)采用计算出来的(C,)个值进行广播归一化操作，最后再乘上可学习的(C,)个权重参数即可**
 
@@ -409,3 +409,21 @@ input = torch.randn(20, 100, 35, 45)
 ```
 
 其可学习权重维度是(100,35,45)：**对batch输入计算均值和方差(C、H和W维度求均值)，输出维度为(N,)，然后对输入(N,C,H,W)采用计算出来的(N,)个值进行广播归一化操作，最后再乘上可学习的(C,H,W)个权重参数即可**。
+
+**(3) IN**
+
+对于IN，其归一化维度最简单，就是HxW，如下所示：
+
+![image-20220711181226951](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220711181226951.png)
+
+输入参数必须且只能是C，其内部计算是：**对batch输入计算均值和方差(H,W维度求均值方差)，输出维度为(N,C),然后对输入(N,C,H,W)采用计算出来的(N,C)个值进行广播归一化操作，最后再乘上可学习的(C,)个权重参数即可**。
+
+由于其计算均值和方差和batch没有关系，故也不需要强制开启eval模式。
+
+**(4) GN**
+
+GN是介于LN和IN之间的操作，多了一个group操作，例子如下：
+
+![image-20220711181240760](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220711181240760.png)
+
+注意第一个参数分组数必须能够将输入通道整除，否则会报错，因为无法均匀分组。其内部计算是：**对batch输入计算均值和方差(C/组数、H,W维度求均值方差)，输出维度为(N,组数),然后对输入(N,C,H,W)采用计算出来的(N,组数)个值进行广播归一化操作，最后再乘上可学习的(C,)个权重参数即可**。不需要强制开启eval模式。
