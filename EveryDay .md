@@ -421,7 +421,7 @@ GN是介于LN和IN之间的操作，多了一个group操作，
 其内部计算是：**对batch输入计算均值和方差(C/组数、H,W维度求均值方差)，输出维度为(N,组数),然后对输入(N,C,H,W)采用计算出来的(N,组数)个值进行广播归一化操作，最后再乘上可学习的(C,)个权重参数即可**。不需要强制开启eval模式。
 
 # Day 13
-###（对YOLOv5中FPN的理解）
+### （对YOLOv5中FPN的理解）
 ## 1.2 FRN
 
 虽然GN解决了小batch size时如果batch比较小，那么可能统计就不准确的问题，但在正常的batch size时，其精度依然比不上BN层。FRN解决了归一化既不依赖于batch，又能使精度高于BN。FRN层由两部分组成，Filtere Response Normal-ization (FRN)（过滤响应归一化）和Thresholded Linear Unit (TLU)（阈值线性单元）。
