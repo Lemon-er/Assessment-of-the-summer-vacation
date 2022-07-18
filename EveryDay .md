@@ -470,3 +470,8 @@ depth_multiple表示channel的缩放系数，就是将配置里面的backbone和
 (3) 采用了yolo系列中常用的梯度累积策略，增加batch size，并对输出head部分的bias进行特殊初始化；采用了类平衡采样策略
 
 
+(4) 多尺度训练，但是写的非常粗暴，直接对dataloader输出的batch图片进行双线性插值
+
+(5) 支持onnx格式导出
+
+(6) 采用了模型权重指数滑动平均的ema策略(比赛常用策略)
