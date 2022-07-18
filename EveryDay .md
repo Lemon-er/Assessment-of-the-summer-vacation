@@ -461,3 +461,12 @@ depth_multiple表示channel的缩放系数，就是将配置里面的backbone和
 
 **(4) 和yolov4一样，都用了mosaic增强，提升小物体检测性能**
 
+其他一些操作包括：
+
+(1) 采用了最新版本的pytorch进行混合精度以及分布式训练
+
+(2) warmup+cos lr学习率策略，对bias不进行权重衰减
+
+(3) 采用了yolo系列中常用的梯度累积策略，增加batch size，并对输出head部分的bias进行特殊初始化；采用了类平衡采样策略
+
+
