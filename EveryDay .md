@@ -433,3 +433,31 @@ N是HxW,表面看起来计算方式非常类似IN，计算过程是**：对输�
 **(2) TLU**
 
 由于在FRN操作中**没有减去均值**，会导致“归一化”后的特征值不是关于零对称，可能会以任意的方式偏移零值。如果使用ReLU作为激活函数的话，会引起误差，产生很多零值，性能下降。所以需要对ReLU进行增强，即TLU，引入一个可学习的阈值τ。
+
+# Day14
+yolov5相比于yolov4，在模型方面最大特点是灵活，其引入了depth_multiple和width_multiple系数来得到不同大小模型：
+
+```text
+yolov5s: 
+    depth_multiple: 0.33
+    width_multiple: 0.50
+yolov5m: 
+    depth_multiple: 0.67
+    width_multiple: 0.75
+yolov5l: 
+    depth_multiple: 1.0
+    width_multiple: 1.0
+```
+
+depth_multiple表示channel的缩放系数，就是将配置里面的backbone和head部分有关通道的设置，全部乘以该系数即可。而width_multiple表示BottleneckCSP模块的层缩放系数，将所有的BottleneckCSP模块的number系数乘上该参数就可以最终的层个数。可以发现通过这两个参数就可以实现不同大小不同复杂度的模型设计。比yolov4更加灵活。
+
+纵观整个yolov5代码，和前yolo系列相比，特点应该是
+
+**(1) 考虑了邻域的正样本anchor匹配策略，增加了正样本**
+
+**(2) 通过灵活的配置参数，可以得到不同复杂度的模型**
+
+**(3) 通过一些内置的超参优化策略，提升整体性能**
+
+**(4) 和yolov4一样，都用了mosaic增强，提升小物体检测性能**
+
