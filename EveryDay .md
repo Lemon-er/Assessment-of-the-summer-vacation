@@ -475,3 +475,19 @@ depth_multiple表示channel的缩放系数，就是将配置里面的backbone和
 (5) 支持onnx格式导出
 
 (6) 采用了模型权重指数滑动平均的ema策略(比赛常用策略)
+
+# Day15
+
+## yolov5的一些改进tricks总结
+
+1.在yolov5上增加小目标检测层link
+
+2.在yolov5上增加注意力机制
+CBAM
+SElayer
+…
+3.考虑在yolov5中加入旋转角度的目标检测机制。
+
+4.结合BiPFN，将yolov5中的PANet层改为efficientDet中的BiFPN。
+
+5.训练baseline，同时使用加权框融合WBF进行后处理/预处理。
