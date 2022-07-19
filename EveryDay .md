@@ -502,3 +502,7 @@ SElayer
 2.在yolo.py开头的import环节添加common.py写好的注意力机制Module。
 3.在对应预训练模型的yaml文件，backbone中嵌入你的注意力机制。**）**
 
+8.yolov5结合BiFPN，现在的neck用的是PANet，在EfficientDet论文中提出了BiFPN结构，还有更加不错的性能，所以就尝试将yolov5中的PANet层改为BiFPN。
+
+9.训练yolov5的baseline，同时使用加权框融合（WBF）进行后处理/预处理。
+
