@@ -491,3 +491,14 @@ SElayer
 4.结合BiPFN，将yolov5中的PANet层改为efficientDet中的BiFPN。
 
 5.训练baseline，同时使用加权框融合WBF进行后处理/预处理。
+
+6.AF-FPN替换金字塔模块。利用自适应注意力机制（AAM）和特征增强模块（FEM）来减少特征图生成过程中的信息丢失并增强表示能力的特征金字塔。将yolov5中原有的特征金字塔网络替换为AF-FPN。来解决模型大小和识别精度不兼容的问题，提高了识别多尺度目标的能力，并在识别速度和准确率之间做出有效的权衡。
+
+7.从数据增强角度，用主动学习策略（active learning）来替换原有的mosaic augmentation。
+
+**（**怎么融合的注意力机制：
+主要是改三个地方，common.py yolo.py和对应预训练模型的yaml。
+1.在common.py添加SElayer或CBAM的类。关于这个模块的定义去参考注意力机制的代码。大部分的注意力机制都是结合通道和空间去做文章。
+2.在yolo.py开头的import环节添加common.py写好的注意力机制Module。
+3.在对应预训练模型的yaml文件，backbone中嵌入你的注意力机制。**）**
+
