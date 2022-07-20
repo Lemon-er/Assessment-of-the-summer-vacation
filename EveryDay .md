@@ -557,3 +557,5 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 每个网格预先设置了 num_anchors=3 个先验框，网络会对这3个先验框的位置进行调整，使其变成最终的预测框。此外，5+num_classes可以理解为4+1+num_classes。其中 4 代表先验框的调整参数(x, y, w, h)，调整已经设定好了的框的位置，调整后的结果是最后的预测框；1 代表先验框中是否包含目标物体，值越接近0代表不包含目标物体，越接近1代表包含目标物体；num_classes 代表目标物体的种类，VOC数据集中num_classes=20，它的值是目标物体属于某个类别的条件概率。
 
 下图是借鉴别人的`YOLOv4`网络的详细结构图：
+
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220719163535203.png)
