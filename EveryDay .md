@@ -523,7 +523,7 @@ WBF已经成为优化目标检测的SOTA了。
 # Day 16
 （yolov4的网络结构笔记）
 
-1.CSPDarkNet53
+## 1.CSPDarkNet53
 
 CSPDarkNet53 骨干特征提取网络在 YOLOV3 的 DarkNet53网络 的基础上引入了 CSP结构。该结构增强了卷积神经网络的学习能力；移除了计算瓶颈；降低了显存的使用；加快了CNN网络的学习能力。
 
@@ -539,3 +539,6 @@ CSP结构图如下：图像输入经过一个3 * 3卷积的下采样层；然后
 ### Backbone的整体结构图：
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220719144823311.png)
 
+## 2.SPP(空间金字塔)
+主要功能是**将不同尺寸的输入转化为固定尺寸的输出**，使得神经网络在训练过程和推理过程都能摆脱对固定尺寸的依赖，避免了因为适应固定尺寸对原始图片进行裁剪（crop）或者变形（wrap）引起的信息丢失和位置信息扭曲。加强特征提取结构能在一定程度上解决多尺度的问题。如下图：
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220719152622396.png)
