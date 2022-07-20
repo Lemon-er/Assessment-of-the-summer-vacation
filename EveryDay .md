@@ -534,7 +534,7 @@ CSP结构图如下：图像输入经过一个3 * 3卷积的下采样层；然后
 模型的骨干就是由多个CSP结构组合而成，但是第一个CSP结构和其他的CSP结构不相同。以输入图像的shape为 [416,416,3] 为例。有如下两点不同：第一个CSP结构是先经过一个标准卷积块下采样，然后经过3* 3卷积提取特征，不改变通道数64；在主干卷积分支的残差块，先1* 1卷积下降通道数32，再3* 3卷积上升通道数64。
 
 输入图像的shape为[416.416,3]，网络不断进行下采样来获得更高的语义信息，输出三个有效特征层，feat1的shape为 [52,52,256] 负责预测小目标，feat2的shape为[26,26,512] 负责预测中等目标，feat3的shape为[13,13,1024] 负责预测大目标
-![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/6fff7f87b86145409218597bca541128 - 副本.png)
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/6fff7f87b86145409218597bca541128%20-%20%E5%89%AF%E6%9C%AC.png)
 
 ### Backbone的整体结构图：
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220719144823311.png)
