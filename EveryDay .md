@@ -558,4 +558,4 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 
 下图是借鉴别人的`YOLOv4`网络的详细结构图：
 
-![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My Photo/image-20220719163535203.png)
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220719163535203.png)
