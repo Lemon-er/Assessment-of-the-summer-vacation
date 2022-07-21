@@ -590,6 +590,7 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_cls.png)
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_iou.png
 )
-![img]()
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_obj.png
+)
 ![img]()
 ![img]()
