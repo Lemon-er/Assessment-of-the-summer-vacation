@@ -583,6 +583,13 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 |      | 2398           | 1        |      |      |      |
 
 预测结果：
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/%E4%B8%8B%E8%BD%BD.png)
 
 【评价指标】：
-
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss.png)
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_cls.png)
+![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_iou.png
+)
+![img]()
+![img]()
+![img]()
