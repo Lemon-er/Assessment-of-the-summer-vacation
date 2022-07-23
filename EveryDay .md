@@ -595,7 +595,7 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/mAP.png)
 
 # Day 18
-### 1.2 SORT中的卡尔曼滤波
+### 1.SORT中的卡尔曼滤波
 
 - SORT中将卡尔曼滤波器用于检测框运动的预测，那么描述一个检测框需要以下四个状态，即
 
