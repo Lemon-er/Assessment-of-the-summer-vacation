@@ -593,3 +593,26 @@ YOLOHead 由一个3* 3卷积层和一个1* 1卷积层构成，3* 3卷积整合�
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_wh.png)
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/loss_xy.png)
 ![img](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/mAP.png)
+
+# Day 18
+### 1.2 SORT中的卡尔曼滤波
+
+- SORT中将卡尔曼滤波器用于检测框运动的预测，那么描述一个检测框需要以下四个状态，即
+
+（1）检测框中心的横坐标
+
+（2）检测框中心的纵坐标
+
+（3）检测框的大小（论文中叫做scale或者area）
+
+（4）长宽比
+
+- 以上四个状态可以描述一个检测框的基本信息，但是不能完全描述一个状态的运动状态信息，所以需要引入上述的状态的变化量信息（可以看作变化速度）来进行运动状态信息的描述。由于SORT假设一个物体在不同帧中检测框的长宽比不变，是个常数，所以变化量只考虑上面的（1）（2）（3），不考虑（4），即
+
+（1）检测框中心的横坐标的变化速度
+
+（2）检测框中心的纵坐标的变化速度
+
+（3）检测框的大小（论文中叫做scale或者area）的变化速度
+
+- 所以SORT中共使用了7个参数，用来描述检测框的状态。将帧间的位移假设为线性匀速模型，所以每个目标的状态综合了上述提到的7个信状态值。
