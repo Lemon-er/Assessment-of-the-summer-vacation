@@ -672,3 +672,19 @@ FPN网络产出Prediction head，在Prediction head中多出来了一个分支�
 
 - 对embedding进行转化，转化为足够强的语义信息，也就是这个embedding到底属于哪个track ID的物体，那么这种就需要借鉴物体分类的思路了（将每个track ID当作一个类别），所以作者引入了全连接层将embedding信息转化为track ID分类信息，如下图。
 ![img](https://ai-studio-static-online.cdn.bcebos.com/47d206ea200549e3905f45da1b439a84be22d3cfdcb24e5cb869e94eafaf7883)
+
+### 3.4 小结
+
+JDE是一个网络同时输出图像画面中的检测框位置和检测框内物体的embedding，加速MOT的速度。JDE只是同时输出了检测框和embedding信息。后面还是要通过卡尔曼滤波和匈牙利算法进行目标的匹配。
+
+## 4 FairMOT
+
+### 4.1 简介
+
+- 其实FairMOT属于JDE（Jointly learns the Detector and Embedding model ）的一种。实验证明了现有的JDE方法存在一些不足，FairMOT根据这些不足进行了相关的改进
+
+### 4.2 JDE方法存在的问题
+
+- Anchor-Based 的检测器不适用JDE追踪模式，如下图
+- ![img](https://ai-studio-static-online.cdn.bcebos.com/8127d039721841f483a8efd75eaf2359c0f8399485c046daabd256c1bceca30a)
+- 
