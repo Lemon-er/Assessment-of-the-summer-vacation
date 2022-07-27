@@ -704,3 +704,5 @@ MOT的一些benchmarks中并没有那么像Re-ID那么多的数据，维度设�
 
 - 针对Anchor-Based 的检测器不适用JDE追踪模式问题，使用了Anchor-Free目标检测范式来代替。anchor-free的方法就是一种基于关键点检测的方法。目前最常见的就是检测物体的中心点。本文中正是采用了基于中心点检测的anchor-free方法，该方法可以有效解决上述讨论的问题。
 - 针对多层特征融合问题，选择DLA( Deep Layer Aggregation)的网络进行特征提取，这个网络的最大特点就是多层融合，结构如下图。
+
+![img](https://ai-studio-static-online.cdn.bcebos.com/b4bfd97960a84f83a4c45aec156b2786b21eddfaa1964f71a3777571672c6b48)
