@@ -706,3 +706,14 @@ MOT的一些benchmarks中并没有那么像Re-ID那么多的数据，维度设�
 - 针对多层特征融合问题，选择DLA( Deep Layer Aggregation)的网络进行特征提取，这个网络的最大特点就是多层融合，结构如下图。
 
 ![img](https://ai-studio-static-online.cdn.bcebos.com/b4bfd97960a84f83a4c45aec156b2786b21eddfaa1964f71a3777571672c6b48)
+
+- Encoder-decoder网络提取的（stride=4）高分辨率特征图将被作为四个分支的特征图。其中三个被用来检测物体（Detection），一个被用来输出物体的Re-ID信息(Re-ID)。
+- 每个分支都被称为一个head分支。每个head除了最后输出通道维度的不同，其组成都类似，每个head由一个3x3卷积层后面接一个1x1卷积层实现的。
+
+### 4.4 FairMOT小结
+
+- FairMOT获得物体的位置和Re-ID信息后，配合卡尔曼滤波求解其代价矩阵（cost matrix），然后利用匈牙利算法进行匹配，FairMOT就结束了。
+
+------
+
+
