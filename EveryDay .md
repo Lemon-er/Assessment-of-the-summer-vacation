@@ -715,3 +715,42 @@ MOT的一些benchmarks中并没有那么像Re-ID那么多的数据，维度设�
 ------
 
 
+# Day20
+
+1️⃣ 	***改进【一】：*** 将Mish激活函数换为Hardswish激活函数
+
+yolov4的主干网络使用的是Mish激活函数，是一种平滑的非单调的激活函数。
+
+![image-20220720141809626](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220720141809626.png)
+
+Mish激活函数的复杂度较高，计算的同时要引入一个softplus()激活层和另外一个tanh激活函数，从而导致计算速度较慢。
+
+Hardswish激活函数。相较于swish函数，具有数值稳定性好，计算速度快等优点。其数学表达式见公式：
+
+![image-20220720141056224](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220720141056224.png)
+
+hardswish激活函数是对swish激活函数的改进，由公式可见hardswish激活函数可以实现为分段功能，以减少内存访问次数，从而大大降低了等待时间成本。
+
+![image-20220720165925991](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220720165925991.png)
+
+改动前：
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarkner+Mish | PANet+L-relul | 53.10 | 69.78% |
+
+改动后模型评估：
+
+| 骨架网络           | Neck          | fps   | mAP    |
+| :----------------- | ------------- | ----- | ------ |
+| CSPDarkner+H-swish | PANet+L-relul | 52.06 | 69.76% |
+
+改动前：
+
+![lossa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossa.png)
+
+改动后：
+
+![lossaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossaa.png)
+
+总结：对比前后两个loss变化图可以看出，改动后训练时间缩短了10分钟左右，loss下降的更快一些；从预测结果来看，预测帧率变化不大，但是精度下变化不大；综合来看，用Hardswish激活函数替换Mish函数效果并不十分明显。
