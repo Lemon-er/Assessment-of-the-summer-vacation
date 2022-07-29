@@ -750,6 +750,6 @@ hardswish激活函数是对swish激活函数的改进，由公式可见hardswish
 
 改动后：
 
-![lossaa]
+![lossaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossaa.png)
 
 总结：对比前后两个loss变化图可以看出，改动后训练时间缩短了10分钟左右，loss下降的更快一些；从预测结果来看，预测帧率变化不大，但是精度下变化不大；综合来看，用Hardswish激活函数替换Mish函数效果并不十分明显。
