@@ -727,8 +727,7 @@ Mish激活函数的复杂度较高，计算的同时要引入一个softplus()激
 
 Hardswish激活函数。相较于swish函数，具有数值稳定性好，计算速度快等优点。其数学表达式见公式：
 
-![image-20220720141056224](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220720141056224.png)
-
+![image-20220720141056224](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image.png)
 hardswish激活函数是对swish激活函数的改进，由公式可见hardswish激活函数可以实现为分段功能，以减少内存访问次数，从而大大降低了等待时间成本。
 
 ![image-20220720165925991](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220720165925991.png))
@@ -751,5 +750,6 @@ hardswish激活函数是对swish激活函数的改进，由公式可见hardswish
 
 改动后：
 
-![lossaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image.png)
+![lossaa]
+
 总结：对比前后两个loss变化图可以看出，改动后训练时间缩短了10分钟左右，loss下降的更快一些；从预测结果来看，预测帧率变化不大，但是精度下变化不大；综合来看，用Hardswish激活函数替换Mish函数效果并不十分明显。
