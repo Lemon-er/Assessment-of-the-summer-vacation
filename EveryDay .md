@@ -747,7 +747,7 @@ hardswish激活函数是对swish激活函数的改进，由公式可见hardswish
 
 改动前：
 
-![lossa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossa.png)
+![lossa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossa.png)
 
 改动后：
 
