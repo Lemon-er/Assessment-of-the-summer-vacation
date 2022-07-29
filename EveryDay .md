@@ -731,7 +731,7 @@ Hardswish激活函数。相较于swish函数，具有数值稳定性好，计算
 
 hardswish激活函数是对swish激活函数的改进，由公式可见hardswish激活函数可以实现为分段功能，以减少内存访问次数，从而大大降低了等待时间成本。
 
-![image-20220720165925991](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220720165925991.png)
+![image-20220720165925991](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220720165925991.png))
 
 改动前：
 
