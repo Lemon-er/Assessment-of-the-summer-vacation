@@ -773,7 +773,7 @@ H-swish下方有界及其无界性，它有助于消除输出神经元的饱和�
 | 骨架网络           | Neck          | fps   | mAP    |
 | :----------------- | ------------- | ----- | ------ |
 | CSPDarkner+H-swish | PANet+H-swish | 56.72 | 65.79% |
-![lossaaaaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossaaaaa.png)
+![lossaaaaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossaaaaa.png)
 
 ![mAPaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\mAPaa.png)
 
