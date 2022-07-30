@@ -776,3 +776,6 @@ H-swish下方有界及其无界性，它有助于消除输出神经元的饱和�
 ![lossaaaaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossaaaaa.png)
 
 ![mAPaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\mAPaa.png)
+
+
+总结：可以看到，当我们把Neck的激活函数也换为H-swish后，loss函数的收敛值是比较高的，而且精度也有所下降，可见在yolov4的CSPDarkner、PANet网络中，Mish和L-relul激活函数还是比较好的。
