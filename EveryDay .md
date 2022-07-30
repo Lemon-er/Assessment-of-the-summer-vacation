@@ -753,3 +753,11 @@ hardswish激活函数是对swish激活函数的改进，由公式可见hardswish
 ![lossaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossaa.png)
 
 总结：对比前后两个loss变化图可以看出，改动后训练时间缩短了10分钟左右，loss下降的更快一些；从预测结果来看，预测帧率变化不大，但是精度下变化不大；综合来看，用Hardswish激活函数替换Mish函数效果并不十分明显。
+
+# Day21
+
+2️⃣ 	***改进【二】：***  将激活函数L-relul改为H-swish
+
+H-swish下方有界及其无界性，它有助于消除输出神经元的饱和问题，改善网络正则化。它的计算速度比Swish快，并且有利于训练，因为它有助于学习更有表现力的特征，对噪声更鲁棒。
+
+不同的目标检测算法都采用了H-swish激活，大大减少了模型的内存访问次数。这里使用Hard-Swish函数作为Backbone和Neck的主要激活函数，在所考虑的数据集上具有显著的精度增益。此外，提高了检测速度，大大降低了计算成本。
