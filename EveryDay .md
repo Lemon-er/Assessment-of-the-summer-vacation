@@ -787,7 +787,7 @@ SENet 架构论文连接：https://arxiv.org/abs/1709.01507
 
 通过卷积神经网络可以融合通道信息来构建信息特征，通过增加SENet架构可以有效地增加卷积网络的表达能力，“SE注意力机制通过显式建模通道之间的相互依赖关系来自适应地重新校准通道特征响应”，从而能提升网络性能。
 
-![image-20220721221546240](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221546240.png)
+![image-20220721221546240](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%Photo/image-20220721221546240.png)
 
 ![image-20220721221604628](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221604628.png)
 
