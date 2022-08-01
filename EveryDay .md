@@ -778,3 +778,39 @@ H-swish下方有界及其无界性，它有助于消除输出神经元的饱和�
 ![mAPaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/mAPaa.png)
 
 总结：可以看到，当我们把Neck的激活函数也换为H-swish后，loss函数的收敛值是比较高的，而且精度也有所下降，可见在yolov4的CSPDarkner、PANet网络中，Mish和L-relul激活函数还是比较好的。
+
+# Day22
+
+3️⃣	***改进【三】：*** 增加SE注意力机制
+
+SENet 架构论文连接：https://arxiv.org/abs/1709.01507
+
+通过卷积神经网络可以融合通道信息来构建信息特征，通过增加SENet架构可以有效地增加卷积网络的表达能力，“SE注意力机制通过显式建模通道之间的相互依赖关系来自适应地重新校准通道特征响应”，从而能提升网络性能。
+
+![image-20220721221546240](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221546240.png)
+
+![image-20220721221604628](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221604628.png)
+
+![image-20220721221625993](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221625993.png)
+
+在箭头表明的地方增加了SE注意力机制：
+
+![image-20220722110231157](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220722110231157.png)
+
+改动前：
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarkner+Mish | PANet+L-relul | 53.10 | 69.78% |
+
+增加SE后模型评估：
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 33.46 | 70.57% |
+
+loss变化图像：
+
+![lossaaaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossaaaa.png)
+
+总结：可以看到，增加SE注意力机后模型的训练速度慢了一个小时左右，但是模型评估的精度比Baseline增加了一个多点（此时我已经把激活函数改回了Mish），但推理的FPS有所下降，可见在卷积网络中增加注意力机制的办法确实可以提升网络性能。（两次修改后预测图片的结果都差不多，所以就没有贴，可能是图片找到不太好，下次换一张图来预测）
