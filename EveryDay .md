@@ -810,6 +810,6 @@ SENet 架构论文连接：https://arxiv.org/abs/1709.01507
 
 loss变化图像：
 
-![lossaaaa](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lossaaaa.png)
+![lossaaaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossaaaa.png)
 
 总结：可以看到，增加SE注意力机后模型的训练速度慢了一个小时左右，但是模型评估的精度比Baseline增加了一个多点（此时我已经把激活函数改回了Mish），但推理的FPS有所下降，可见在卷积网络中增加注意力机制的办法确实可以提升网络性能。（两次修改后预测图片的结果都差不多，所以就没有贴，可能是图片找到不太好，下次换一张图来预测）
