@@ -789,7 +789,7 @@ SENet 架构论文连接：https://arxiv.org/abs/1709.01507
 
 ![image-20220721221546240](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%Photo/image-20220721221546240.png)
 
-![image-20220721221604628](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221604628.png)
+![image-20220721221604628](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220721221546240.png)
 
 ![image-20220721221625993](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220721221625993.png)
 
