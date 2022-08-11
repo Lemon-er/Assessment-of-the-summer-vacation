@@ -813,3 +813,58 @@ loss变化图像：
 ![lossaaaa](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lossaaaa.png)
 
 总结：可以看到，增加SE注意力机后模型的训练速度慢了一个小时左右，但是模型评估的精度比Baseline增加了一个多点（此时我已经把激活函数改回了Mish），但推理的FPS有所下降，可见在卷积网络中增加注意力机制的办法确实可以提升网络性能。（两次修改后预测图片的结果都差不多，所以就没有贴，可能是图片找到不太好，下次换一张图来预测）
+
+# Day24
+
+4️⃣	***改进【四】：*** 将spp模块换为aspp空洞卷积来增大感受野
+
+在最初的YOLOv4 Backbone中，SPP块与PANet以及CSPDarknet53集成，取代了YOLO其他变体中使用的特征金字塔网络(FPN)。这带来了感受野的显著增加。现在将spp模块换为aspp空洞卷积进一步增增加感受野。
+
+一般认为图片中相邻的像素点存在信息冗余，故而空洞卷积具备以下两个优势：
+
+(1) 扩大感受野：传统的下采样虽可增加感受野，但会降低空间分辨率。而使用空洞卷积能够在扩大感受野的同时，保证分辨率。这十分适用于检测、分割任务中，感受野的增大可检测、分割大的目标，高分辨率则可精确定位目标。
+(2) 捕获多尺度上下文信息：空洞卷积中参数 dilation rate 表明在卷积核中填充 (dilation rate-1) 个 0。设置不同 dilation rate 给网络带来不同的感受野，即获取了多尺度信息。
+
+spp是由四个最大池化来提取特征，Sapp通过设置dilation rate和卷积核的大小获得不同的感受野，最后通过拼接融合提取到的特征，获得多尺度信息。
+
+![](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220725154708590.png)
+
+![image-20220725154737551](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220725154737551.png)
+
+将spp换成aspp:
+
+![image-20220725155108500](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220725155108500.png)
+
+• Baseline:
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 53.10 | 69.78% |
+
+• 增加SE后模型评估：
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 33.46 | 70.57% |
+
+• 将spp改为sapp(没加SE):
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 31.59 | 69.86% |
+
+• 将spp改为aspp(加SE):
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 33.08 | 71.97% |
+
+没加SE loss变化图像：
+
+![oss](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\oss.png)
+
+ 加SE loss变化图像：
+
+![ss](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\ss.png)
+
+总结：只将spp改为Sapp后对于模型的精度并没有什么提升（与Baseline相比），在loss变化上也想差不大。但是在增加SE注意力机制的基础上再将spp改为sapp后，精度上比Baseline提升了一个点多一点，比只增加SE注意力机制多了不到一个点，可以看到这样改在速度和精度上确实有微小提升。
