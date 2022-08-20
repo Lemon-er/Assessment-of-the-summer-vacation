@@ -885,7 +885,7 @@ spp是由四个最大池化来提取特征，Sapp通过设置dilation rate和卷
 
 （加SE注意力机制、换成aspp模块）loss变化及精度指标：
 
-![lss](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lss.png)
+![lss](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/lss.png)
 
 
 
