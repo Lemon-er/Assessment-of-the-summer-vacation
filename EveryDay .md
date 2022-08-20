@@ -889,7 +889,7 @@ spp是由四个最大池化来提取特征，Sapp通过设置dilation rate和卷
 
 
 
-![mAaP](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\mAaP.png)
+![mAaP](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/mAaP.png)
 
 总结： 通过适当增加模块，增大感受野，提高特征提取率，修改学习率后，模型精度大幅超过了Baseline，loss的收敛值接近了3，但是最低loss值在大约40000iter左右，之后又有所升高。map达到了85.05%的高精度。可见在修改模型后适当调整学习率会有更好的效果。
 
