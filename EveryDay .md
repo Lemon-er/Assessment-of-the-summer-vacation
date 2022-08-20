@@ -875,7 +875,7 @@ spp是由四个最大池化来提取特征，Sapp通过设置dilation rate和卷
 
 学习率可以说是**模型训练最为重要的超参数**。 通常情况下，一个或者一组优秀的学习率既能加速模型的训练，又能得到一个较优甚至最优的精度。 过大或者过小的学习率会直接影响到模型的收敛。因为学习率是官方设置好的，本来没想到要修改学习率，由于改了几个点模型的精度都没有明显的提升，所以我尝试在paddle发布的原版本的基础上修改了'base_lr'=0.001(原来是0.0001)，将'milestones'的范围改为（20000，40000），总iter为60000，将学习率变化的范围分为1:1:1
 
-![image-20220726231557008](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220726231557008.png)
+![image-20220726231557008](https://github.com/Lemon-er/Assessment-of-the-summer-vacation/blob/main/My%20Photo/image-20220726231557008.png)
 
 修改后训练完的模型精度竟然达到了85.05%
 
