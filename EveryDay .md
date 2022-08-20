@@ -868,3 +868,31 @@ spp是由四个最大池化来提取特征，Sapp通过设置dilation rate和卷
 ![ss](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\ss.png)
 
 总结：只将spp改为Sapp后对于模型的精度并没有什么提升（与Baseline相比），在loss变化上也想差不大。但是在增加SE注意力机制的基础上再将spp改为sapp后，精度上比Baseline提升了一个点多一点，比只增加SE注意力机制多了不到一个点，可以看到这样改在速度和精度上确实有微小提升。
+
+# Day25
+
+5️⃣  ***改进【五】：***  修改学习率
+
+学习率可以说是**模型训练最为重要的超参数**。 通常情况下，一个或者一组优秀的学习率既能加速模型的训练，又能得到一个较优甚至最优的精度。 过大或者过小的学习率会直接影响到模型的收敛。因为学习率是官方设置好的，本来没想到要修改学习率，由于改了几个点模型的精度都没有明显的提升，所以我尝试在paddle发布的原版本的基础上修改了'base_lr'=0.001(原来是0.0001)，将'milestones'的范围改为（20000，40000），总iter为60000，将学习率变化的范围分为1:1:1
+
+![image-20220726231557008](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\image-20220726231557008.png)
+
+修改后训练完的模型精度竟然达到了85.05%
+
+| 骨架网络        | Neck          | fps   | mAP    |
+| :-------------- | ------------- | ----- | ------ |
+| CSPDarknet+Mish | PANet+L-relul | 33.91 | 85.05% |
+
+（加SE注意力机制、换成aspp模块）loss变化及精度指标：
+
+![lss](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\lss.png)
+
+
+
+![mAaP](C:\Users\19127\AppData\Roaming\Typora\typora-user-images\mAaP.png)
+
+总结： 通过适当增加模块，增大感受野，提高特征提取率，修改学习率后，模型精度大幅超过了Baseline，loss的收敛值接近了3，但是最低loss值在大约40000iter左右，之后又有所升高。map达到了85.05%的高精度。可见在修改模型后适当调整学习率会有更好的效果。
+
+
+
+
