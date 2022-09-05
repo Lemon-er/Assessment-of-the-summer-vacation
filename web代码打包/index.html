@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.staticfile.org/jquery/1.8.3/jquery.min.js"></script>
+<head>
+    <title>首页</title>
+    <style>
+        #img1 {
+            width: 600px;
+            height: 600px
+        }
+
+        #box {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <h2>YOLOV4目标检测Flask Web部署演示</h2>
+    <!--初始化一个img标签-->
+    <img id="img1" src="" alt="">
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="chooseImage" accept="image/*" required>
+        <input type="button" value="识别" id="upFileBtn">
+    </form>
+    <!-- 显示识别结果 -->
+    <p id="p1">识别结果：<nobr id="d1"> <nobr/> </p>
+</div>
+
+<script type="text/javascript">
+    // 绑定上传按钮
+    $('#upFileBtn').click(function () {
+        if (!$('#chooseImage').val()) {
+            alert("请选择图片")
+            return;
+        }
+        var formFile = new FormData($('#uploadForm')[0])
+        $.ajax({
+            url: "/detector", // 选择给定路由
+            type: "POST",   // 选择上传方式
+            data: formFile, // 使用form表单的形式上传
+            processData: false,
+            contentType: false,
+            success: function (d) {
+                let msg = "成功"
+                if (d === "") {
+                    msg = "失败"
+                }
+                $('#img1').attr('src', "data:image/png;base64," + d); // 更新显示的图片
+                $('#d1').html(msg) // 更新识别的结果
+            }
+        })
+    });
+
+    // 显示图片
+    $("#chooseImage").on('change', function () {
+        if (!this.files[0]) {
+            $('#img1').attr('src', '');
+            return;
+        }
+        let filePath = $(this).val(); //获取到input的value，里面是文件的路径
+
+        let fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(); //获取文件后缀
+
+        let src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg|.bmp|.gif/)) {
+            //error_prompt_alert
+            alert('上传错误,文件格式必须为：png/jpg/jpeg/bmp/gif');
+            return;
+        }
+        $('#img1').attr('src', src); //将图片地址放置在img的src中。
+    });
+</script>
+</body>
+</html>
